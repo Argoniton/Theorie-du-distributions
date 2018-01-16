@@ -1,0 +1,162 @@
+Walter Aschbacher
+
+Table des matières
+
+	\begin{itemize}
+		\item Espaces de fonctionnes tests
+		\item Distributions
+		\item Opérateurs élémentaires sur les distributions
+		\item Convolution
+		\item Solution fondamentales
+		\item Discute la distribution tempérées
+	\end{itemize}
+	
+cm 1 1' 2 2'...;
+TD; CC, CT 
+Théorie du distributions. (12 * 2 + 1)h CM+TD 
+
+
+
+
+\chapter{Espaces de fonctions tests} % (fold)
+\label{cha:espaces_de_fonctions_tests}
+
+\section{Espaces vectoriels topologiques localement convexes et séparés} % (fold)
+\label{sec:espaces_de_fonctions_tests}
+Pas de profondes.
+
+La topologie d'un espace vectoriel complexe $V$ n'est pas toujours donnée par une norme comme dans le d'un cas espace de Banach ou d'un espace de Hilbert.
+En plus, dans une topologie quelconque, les opérations linéaires de $V$, c-à-d, l'addition et la multiplication par un scalaire complexe, respectivement notées 
+
+\[
+	\mqty{V\times V\rightarrow V\\
+	(x,y)\mapsto x+y},
+	\mqty{\C\times V -> V\\
+	(\lambda, x)\mapsto \lambda x}
+\]
+
+
+ne sont pas nécessairement continues.
+
+Alors, nous commençons section par discuter un procédé général qui nous permettra d'in une topologie sur $V$ t.q. ce opérations linéaires deviennent des applications continues p.r. à cette topologie.
+
+
+Dans ce cours, sans que rien d'autre ne soit explicitement indique, $V$ sera toujours un espace vectoriel complexe.
+
+\begin{definition}
+	Soit V un espace vectoriel. Une topologie sur V telle que les opérations linéaires sont continue par rapport est dite "compatible".
+
+	Un espace vectoriel V muni d'une topologie compatible s'appelle un "espace vectoriel topologique (EVT)".
+\end{definition}
+
+Rappelons-nous la définition d'une topologie.
+
+\begin{definition}
+	Un topologie sur une ensemble $X$ est une famille que notée souvent $T$ de parties de $X$ ayant les propriétés suivantes:\\
+	(T1) $ø\in T$, $X\in T$
+	(T2) soit $A_i\in T$ pour tout $i \in I$ (où $I$ est quelconque, $I$ n'est pas nécessairement dénombrable). Alors $\cup_{i\in I}A_i\in T$.
+	(T3) Soit $N\in \N^*=\{1, 2, 3,...\}$ et $A_1,..., A_N\in T$. Alors, $\cap_{i=1}^NA_i\in T$.
+
+	Le couple $(X, T)$ s'appelle un espace topologique. En plus, les éléments de $T$ s'appellent les ensembles "ouvert" et leurs complémentaires (dans $X$), les ensembles "fermes". 
+\end{definition}
+
+\begin{example}
+	\begin{itemize}[(a)]
+		\item Soit $X$ un ensemble et $T=\{ø,X\}$. Alors, $T$ est une topologie sur $X$ qui s'appelle la "topologie triviale".
+		\item Soit $X$ un ensemble et $T=P(X)$ l'ensemble des parties de $X$. Alors, $T$ est une topologie sur $X$ qui s'appelle la "topologie discrète".
+		\item $L\ensemble T=\{\text{unions d'intervalles ouverts de $\R$}\}$ est une topologie sur $\R$ (la topologie usuelle).
+	\end{itemize}
+\end{example}
+
+Afin de pouvoir et introduire une topologie compatible $T$ sur un espace vectoriel $V$ pour que $(V, T)$ devienne un espace vectoriel topologique nous utiliserons la notion fondamentale suivante.
+
+\begin{definition} %1.4
+	Une "semi-norme" sur un espace vectoriel V est une application
+		\[p:V-> \R\]
+	ayant les propriétés suivantes (pour tout $x,y\in V$ et tout $\lambda\in\C$):
+	(SN1) $p(x+y)≤p(x)+p(y)$ (inégalité triangulaire)
+	(SN2) $p(\lambda x)=|\lambda|p(x)$ (linéarité)
+	
+	La propriété (SN1) s'appelle l'"inégalité triangulaire" et (SN2) l'"homogénéité positive".
+	Si en plus, $p$ a la propriété de "séparation", c-à-d 
+	(SN3) $p(x)=0$, alors $x=0$; 
+	la semi-norme $p$ s'appelle une "norme" sur $V$.
+\end{definition}
+
+\begin{proposition} %1.5
+	Une semi-norme a les propriétés élémentaires suivantes.
+	Soit $p$ une semi-norme sur l'espace vectoriel $V$. Alors:
+	\begin{enumerate}[(a)]
+		\item $p(0)=0$
+		\item $|p(x)-p(y)|≤p(x-y)$ pour tout $x,y\in V$
+		\item $p(x)≥0$ pour tout $x\in V$
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	cf Exr. 1
+\end{proof}
+
+\begin{exercise} %1.6
+	\begin{enumerate}[(a)]
+		\item Soit $V=\C^d$. Alors, pour tout $i\in\{1,...,d\}$, l'application 
+		\[p_i:V->\R,\]
+		définie, pour tout $x=(x_1, ..., x_d)\in \C^d$, par 
+		\[p_i(x):=|x_i|\]
+		est une semi-norme sur $V$.
+		\item Soit $V$ un espace vectoriel et $T:V->\C$ une forme linéaire sur $V$. Alors, l'application
+		\[p:V->\R\],
+		définie pour tout $X\in V$, par
+		\[p(x):=|T(x)|,\]
+		est une semi-norme sur $V$.
+	\end{enumerate}
+\end{exercise}
+\begin{proof} % 1.6
+	cf. Exr. 2
+\end{proof}
+\begin{remark}
+	Pour décrire la topologie usuelle sur $\C^d$, il ne suffit pas d'utiliser un soul $p_i$ de Ex. 1.6(a), mais toutes les semi-normes de la famille.
+	$P:=\{p_1,...,p_d\}$ sont nécessaires.
+\end{remark}
+
+A présent, nous allons introduire la notation utilisée dans ce cours.
+
+\begin{definition} %1.7
+	Dans ce cours, si rien d'autre n'est explicitement indiquée, le sous ensemble $\Omega\in \R$ est toujours un \emph{ouvert} non-vide de $\R^T$.
+	Pour $a = (α_1, α_2, ..., α_d)\in \N^d$ appelé un "multi-indice", et $x=(x_1,...,x_d)\in\Omega$ on écrira:
+		\[|α|:=∑_{i=1}^d α_i\]
+		\[ D^{α=0}:=1\]
+		\[ D^α:=\frac{\partial^{|α|}}{\partial x_1^{α_1}...x_d^{α_d}}\]
+\end{definition}
+\begin{example}
+	Pour $d=3$ et $α=(1,0,2)$,
+	on a $D^α = D^{(1,0,2)}=\pdv{{}^3}{x_1}{{}^2x_3}$
+\end{example}
+
+Soit $m\in\N$. L'espace vectoriel complexe des fonctions de $\Omega$ dans $\C$ qui sont $m$ fois continûment dérivables est noté
+$C^m(\Omega)=\{\phi:\Omega -> \C | D^α φ\in C(Ω)\text{ pour tout }α\in \N^d avec |α|≤m\}$,
+et $C^0(Ω)=C(Ω)$ sont les foncions continues sur $Ω$.
+Si $K\Subset Ω$ est un sous-ensemble compact (c-à-d, borné et fermé) de Ω, on écrira $K\Subset Ω$.
+
+Les semi-normes suivantes seront d'une grande importance par la suite.
+
+\begin{proposition} % 1.9
+	Soit $V=C^m(Ω)$ pour un $m\in \N$, soit $K\Subset Ω$ et $l\in \N$ avec $0≤l≤m$. Alors:
+	\begin{enumerate}[(a)]
+		\item L'application
+		\[P_{k,l}:V->\R\]
+		définie, pour tout $φ\in V$ par
+		\[P_{k,l}(φ):=\sup_{\substack{X\in K\\|α|≤l}}|(D^αφ)(x)|,\]
+		est une semi-norme sur $V$.
+		\item L'application $q_{k,l}:V->\R$,
+		définie, pour tout $φ\in V$, par
+			\[q_{k,l}(φ):=\sqrt{∑_{|α|≤l}∫_K\dd{x}|(D^αφ)(x)|^2},\]
+		est une semi-norme sur $V$. (n'est pas une norme)
+	\end{enumerate}
+\end{proposition}
+
+
+
+% section espaces_de_fonctions_tests (end) 
+
+
+% chapter espaces_de_fonctions_tests (end)
