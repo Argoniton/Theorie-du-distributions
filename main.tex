@@ -1,3 +1,6 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = xelatex
+
 Walter Aschbacher
 
 Table des matières
@@ -31,7 +34,7 @@ En plus, dans une topologie quelconque, les opérations linéaires de $V$, c-à-
 \[
 	\mqty{V\times V\rightarrow V\\
 	(x,y)\mapsto x+y},
-	\mqty{\C\times V -> V\\
+	\mqty{\C\times V \rightarrow  V\\
 	(\lambda, x)\mapsto \lambda x}
 \]
 
@@ -64,7 +67,7 @@ Rappelons-nous la définition d'une topologie.
 	\begin{itemize}[(a)]
 		\item Soit $X$ un ensemble et $T=\{ø,X\}$. Alors, $T$ est une topologie sur $X$ qui s'appelle la "topologie triviale".
 		\item Soit $X$ un ensemble et $T=P(X)$ l'ensemble des parties de $X$. Alors, $T$ est une topologie sur $X$ qui s'appelle la "topologie discrète".
-		\item $L\ensemble T=\{\text{unions d'intervalles ouverts de $\R$}\}$ est une topologie sur $\R$ (la topologie usuelle).
+		\item L'ensemble $T=\{ \text{unions d'intervalles ouverts de } \R \}$ est une topologie sur $\R$ (la topologie usuelle).
 	\end{itemize}
 \end{example}
 
@@ -72,7 +75,7 @@ Afin de pouvoir et introduire une topologie compatible $T$ sur un espace vectori
 
 \begin{definition} %1.4
 	Une "semi-norme" sur un espace vectoriel V est une application
-		\[p:V-> \R\]
+		\[p:V\rightarrow  \R\]
 	ayant les propriétés suivantes (pour tout $x,y\in V$ et tout $\lambda\in\C$):
 	(SN1) $p(x+y)≤p(x)+p(y)$ (inégalité triangulaire)
 	(SN2) $p(\lambda x)=|\lambda|p(x)$ (linéarité)
@@ -99,12 +102,12 @@ Afin de pouvoir et introduire une topologie compatible $T$ sur un espace vectori
 \begin{exercise} %1.6
 	\begin{enumerate}[(a)]
 		\item Soit $V=\C^d$. Alors, pour tout $i\in\{1,...,d\}$, l'application 
-		\[p_i:V->\R,\]
+		\[p_i:V\rightarrow \R,\]
 		définie, pour tout $x=(x_1, ..., x_d)\in \C^d$, par 
 		\[p_i(x):=|x_i|\]
 		est une semi-norme sur $V$.
-		\item Soit $V$ un espace vectoriel et $T:V->\C$ une forme linéaire sur $V$. Alors, l'application
-		\[p:V->\R\],
+		\item Soit $V$ un espace vectoriel et $T:V\rightarrow \C$ une forme linéaire sur $V$. Alors, l'application
+		\[p:V\rightarrow \R,\]
 		définie pour tout $X\in V$, par
 		\[p(x):=|T(x)|,\]
 		est une semi-norme sur $V$.
@@ -133,9 +136,9 @@ A présent, nous allons introduire la notation utilisée dans ce cours.
 \end{example}
 
 Soit $m\in\N$. L'espace vectoriel complexe des fonctions de $\Omega$ dans $\C$ qui sont $m$ fois continûment dérivables est noté
-$C^m(\Omega)=\{\phi:\Omega -> \C | D^α φ\in C(Ω)\text{ pour tout }α\in \N^d avec |α|≤m\}$,
+$C^m(\Omega)=\{\phi:\Omega \rightarrow  \C | D^α φ\in C(Ω)\text{ pour tout }α\in \N^d avec |α|≤m\}$,
 et $C^0(Ω)=C(Ω)$ sont les foncions continues sur $Ω$.
-Si $K\Subset Ω$ est un sous-ensemble compact (c-à-d, borné et fermé) de Ω, on écrira $K\Subset Ω$.
+Si $K\subset Ω$ est un sous-ensemble compact (c-à-d, borné et fermé) de $Ω$, on écrira $K\Subset Ω$.
 
 Les semi-normes suivantes seront d'une grande importance par la suite.
 
@@ -143,20 +146,140 @@ Les semi-normes suivantes seront d'une grande importance par la suite.
 	Soit $V=C^m(Ω)$ pour un $m\in \N$, soit $K\Subset Ω$ et $l\in \N$ avec $0≤l≤m$. Alors:
 	\begin{enumerate}[(a)]
 		\item L'application
-		\[P_{k,l}:V->\R\]
+		\[P_{K,l}:V\rightarrow \R\]
 		définie, pour tout $φ\in V$ par
-		\[P_{k,l}(φ):=\sup_{\substack{X\in K\\|α|≤l}}|(D^αφ)(x)|,\]
+		\[P_{K,l}(φ):=\sup_{\substack{X\in K\\|α|≤l}}|(D^αφ)(x)|,\]
 		est une semi-norme sur $V$.
-		\item L'application $q_{k,l}:V->\R$,
+		\item L'application $q_{K,l}:V\rightarrow \R$,
 		définie, pour tout $φ\in V$, par
-			\[q_{k,l}(φ):=\sqrt{∑_{|α|≤l}∫_K\dd{x}|(D^αφ)(x)|^2},\]
+			\[q_{K,l}(φ):=\sqrt{∑_{|α|≤l}∫_K\dd{x}|(D^αφ)(x)|^2},\]
 		est une semi-norme sur $V$. (n'est pas une norme)
 	\end{enumerate}
 \end{proposition}
+\begin{proof}
+	Nous avons vérifier les propriétés d'une semi-norme dans Déf. 1.4.
+	\begin{enumerate}[(a)]
+		\item (SN1) Pour tout $φ,ψ\in C^m(Ω)$, on a:
+		
+		\begin{align*}
+			P_{K,l}(φ+ψ)
+				&=\sup_{\substack{x\in K\\|α|≤l}}|D^α(φ+ψ)(x)|\\ 
+				&=\sup_{\substack{x\in K\\|α|≤l}} | D^α(φ)(x)+\underbrace{D^α(ψ)(x)}_{\in\C} | \\
+				&≤\sup_{\substack{x\in K\\|α|≤l}}(|D^α(φ)(x)|+|D^α(ψ)(x)|)\\ 
+				&≤ \sup_{\substack{x\in K\\|α|≤l}}|D^α(φ)(x)|+\sup_{\substack{x\in K\\|α|≤l}}|D^α(ψ)(x)|\\
+				&=P_{K,l}(φ)+P_{K,l}(ψ)
+		\end{align*}
 
+		\item (SN2) Pour tout $φ\in C^m(Ω)$ et $λ\in \C$, on a
+		\[P_{K,l}(λφ)=\sup_{\substack{x\in K\\|α|≤l}}|D^α(λφ)(x)|=\sup_{\substack{x\in K\\|α|≤l}}|λ(D^αφ)(x)|=|λ|\sup_{\substack{x\in K\\|α|≤l}}|(D^αφ)(x)|=|λ|P_{K,l}(φ)\]
+		\item cf. Exr. 3
+	\end{enumerate}
+\end{proof}
 
+\begin{definition} % 1.10
+	Soient $p_1$ et $p_2$ deux semi-normes sur $V$. La semi-norme $p_1$ est dite "plus petite" que $p_2$, noté $p_1<p_2$, si, pour tout $x\in V$, on a que
+	\[p_1(x)≤p_2(x)\]
+	
+	Les semi-normes $p_1$ et $p_2$ s'appellent "comparables" si $p_1<p_2$ ou $p_2<p_1$.
+\end{definition}
 
+Deux semi-normes ne sont pas nécessairement comparables comme on peut constater dans la partie (a) de l'exemple suivant.
+
+\begin{example} %1.11
+	\begin{enumerate}[(a)]
+		\item Les semi-normes $p_i$ et $p_j$ de Ex. 1.6(a) ne sont pas comparables si $i≠j$. ($d=2$ : $p_1(x)=|x_1|$, $p_2(x)=|x_2|$. $x=\vc{0\\1}$, $y=\vc{1\\0}$)
+		\item Soient $K_1, K_2\Subset Ω$ et $K_1\subseteq K_2$, et soient $l_1, l_2\in \N$ avec $0≤l_1≤l_2≤m$. Alors, les semi-normes de Prop. 1.9 sont comparables, c-à-d, on a
+		\[\mqty{P_{K_1,l_1}<P_{K_2,l_2}\\q_{K_1,l_1}<q_{K_2,l_2}}\]
+	\end{enumerate}
+	
+\end{example}
+\begin{proof} %1.11
+	cf. Exr. 4
+\end{proof}
+
+Pour tout $r>0$ et toute semi-norme $p$ sur $V$, on définit la semi-norme $rp$ sur $V$ par $(rp)(x):=rp(x)$ pour tout $x\in V$. La notion suivante sera utilisé dans la condition de la topologie compatible d'EVT.
+
+\begin{definition}
+	Une famille $P$ de semi-norme sur un espace vectoriel $V$ s'appelle "filtrante" si, pour tout $p_1,p_2 \in P$, il existe $p\in P$ et $r_1,r_2>0$ t.q.
+		\[r_1p_1<p,\quad r_2p_2<p\]
+\end{definition}
+
+Nous retenons les faits suivants.
+
+\begin{proposition} %1.13
+	\begin{enumerate}[(a)]
+		\item Soit $P=\{p_1,...,p_N\}$ avec $N\in\N^*$ une famille finie de semi-normes sur l'espace vectoriel $V$. Alors, l'application:
+			\[\bigvee_{i=1}^Np_i:V\rightarrow \R\]
+		définie, pour tout $x\in V$, par 
+			\[(\bigvee_{i=1}^Np_i)(x):=\max\{p_1(x),...p_N(x)\}\]
+			est semi-norme sur $V$.
+		
+		\item Soit $P$ une famille de semi-normes sur $V$ et soit la famille $P'$ par:
+			\[q\in P' :\Leftrightarrow \text{il existe}:\]
+			$p_1, ...,p_N\in P et r_1,...,r_N>0$ pour $N\in\N^*$ t.q. $q=\bigvee_{i=1}^Nr_ip_i$.
+			
+			Alors, $P'$ est une famille filtrante de semi-normes qui contient $P$. Elle s'appelle al "complétion filtrante" de $P$.
+	\end{enumerate}
+\end{proposition}
+\begin{proof}
+	\begin{enumerate}[(a)]
+		\item D'abord pour $q:=\bigvee_{i=1}^Np_i$, on a en effet que $q:V\rightarrow \R$. Ensuite, nous allons vérifier les propriétés d'une semi-norme spécifiés dans Déf. 1.4:
+		(SN1) pour tout $x,y\in V$, on a
+		\[q(x+y)=\max\{\underbrace{p_1(x+y)}_{q(x)+q(y)},...,p_N(x+y)\}≤q(x)+q(y)\]
+		
+		(SN2) Pour tout $x\in V$ et tout $λ\in \C$, on a
+		\[q(λx)=\max\{\underbrace{p_1(λx)}_{|λ|p_1(x)},...,p_N(λx)\}=|λ|\max\{p_1(x),...,p_N(x)\}=q(x)\]
+		
+		\item ef. notes
+	\end{enumerate}
+\end{proof}
+
+\begin{remark}
+	Grâce à Prop. 1.13(b), nous supposerons dorénavant qu'une famille de semi-normes est filtrante.
+\end{remark}
+
+Les familles de semi-normes suivantes joueront également un rôle important plus tard.
+
+\begin{example} %1.15
+	Soient $P_{K,l}$ et $q_{K,l}$ les semi-normes de Prop. 1.9. Alors, les familles de semi-normes sont filtrantes:
+	\begin{enumerate}[(a)]
+		\item $P_m(Ω):=\{P_{K,l}|K\Subset Ω, 0≤l≤m\}$
+		\item $Q_m(Ω):=\{q_{K,l}|K\Subset Ω, 0≤l≤m\}$
+	\end{enumerate}
+\end{example}
+\begin{proof}
+	cf. Exr. 5
+\end{proof}
+
+Après cette courte discussion sur les familles de semi-normes, nous revenons a présent à la question de la définition d'une topologie compatible sur un espace vectoriel.
+
+\begin{definition} %1.16
+	Soit $p$ une semi-norme sur l'espace vectoriel $V$. Pour tout $x\in V$ et tout $ε>0$, l'ensemble
+	\[B_{p,ε}(x)=\{y\in V|p(x-y)<ε\}\]
+	s'appelle la "$p$-boule (ouverte)" de centre $x$ et de "rayon" $ε$.
+\end{definition}
+
+Ces boules ont les propriétés élémentaires suivantes.
+
+\begin{proposition} %1.17
+	Soit $p$ une semi-norme sur l'espace vectoriel $V$. Alors:
+	\begin{enumerate}[(a)]
+		\item La $p$-boule est "invariante par translation", c-à-d, pour tout $x\in V$, on a $B_{p,ε}(x)=x+\overbrace{B_{p,ε}}^{B_{p,ε}(0)}$
+		où nous avons utilisé la notation $x+B_{p,ε}:=\{x+y|y\in B_{p,ε}$.
+		\item La $p$-boule est "sphérique", c-à-d, pour tout $x\in B_{p, ε}$ et tout $λ\in\C$ avec $|λ|≤1$, on a $λx\in B_{p,ε}$.
+		\item La $p$-boule est "convexe", c-à-d, pour tout $x,y\in B_{p, ε}$ et tout $0≤λ≤1$, on a
+			\[λx+(1-λ)y\in B_{p,ε}.\]
+		\item La $p$-boule est "absorbante", c-à-d, pour tout $x\in V$, il existe $λ>0$ t.q. 
+			\[λx\in B_{p,ε}.\]
+		\item Soient $p_1$ et $p_2$ des semi-normes sur $V$ et soient $x_1, x_2 \in V$ et $ε_1, ε_2>0$. Alors, si $B_{p,ε_1}(x_1)\cap B_{p,ε_2}(x_2)≠ø$, il existe $x\in V$, une semi-norme $p$ sur $V$ et $ε>0$ t.q.
+			\[B_{p,ε}(x)\subseteq B_{p_1,ε_2}(x_1)\cap B_{p_2,ε_2}(x_2).\]
+	\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+	(a)-(d) cf.Exr.6\\
+	(e) Soit $x\in B_{p_1,ε_1}(x_1)\cap B_{p_2,ε_2}(x_2)$ et 	$ε = \min\{ε_1-p_1(x-x_1),ε_2-p_1(x-x_2)\}$, et soit $p:=\bigvee_{i=1}^2p_i$. Alors, pour tout $y\in B_{p,ε}(x)$, on trouve:
+		$p_1(y-x_1)=p_1((y-x)+(x-x_1))≤\underbrace{p_1(y-x)}_{≤p(y-x)<ε≤ε_1-p_1(x_1-x)}+p_1(x-x_1)<ε_1$, et de manière analogue, on obtient $p_2(y-x_2)<ε_2$.
+\end{proof}
 % section espaces_de_fonctions_tests (end) 
-
-
 % chapter espaces_de_fonctions_tests (end)
